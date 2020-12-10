@@ -8,6 +8,8 @@ const chkNumbers = document.querySelector(".chkNumbers");
 const chkSimbols = document.querySelector(".chkSimbols");
 const progressBar = document.querySelector(".pass-security");
 const refresh = document.querySelector(".refresh");
+const btnCopy = document.querySelector(".copy");
+const notification = document.querySelector(".notification");
 
 export default () => {
   pass.innerHTML = generate();
@@ -30,6 +32,24 @@ export default () => {
       refresh.classList.remove("active");
     }, 500);
     pass.innerHTML = generate();
+  });
+
+  btnCopy.addEventListener("click", (e) => {
+    e.preventDefault();
+    let selection = window.getSelection();
+    let range = document.createRange();
+    range.selectNodeContents(pass);
+    selection.removeAllRanges();
+    selection.addRange(range);
+    document.execCommand("copy");
+    clearTimeout(hideNotification);
+    notification.style.bottom = "20px";
+    notification.style.opacity = "1";
+
+    let hideNotification = setTimeout(() => {
+      notification.style.bottom = "-100%";
+      notification.style.opacity = "0";
+    }, 5000);
   });
 };
 
