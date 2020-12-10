@@ -77,12 +77,38 @@ h2 {
   top: 0px;
   height: 100%;
   width: 0%;
-  background-color: green;
+  background: #2ecc71;
   border-radius: 30px;
+  transition: all 0.5s;
+}
+
+.pass-security.alert {
+  background-color: #f1c40f;
+}
+
+.pass-security.danger {
+  background-color: #c0392b;
 }
 
 .pass-options .options {
   padding: 20px;
+}
+
+.controls .refresh {
+  transition: transform 0.1s;
+}
+
+.controls .refresh.active {
+  animation: rotating 0.5s ease-in-out;
+}
+
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .character-limit input {
